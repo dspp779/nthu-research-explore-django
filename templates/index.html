@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>國立清華大學研究領域探索系統</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" />
+    <!-- bootstrap latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" integrity="sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.17/css/metro.min.css" integrity="sha256-hV1j0n5o5HuLdOKDh3VNMGY1NiHeVOy8iYB9O8ikULw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.17/css/metro-colors.min.css" integrity="sha256-uh59KumXhgIszhqkzZ2kuC9QsxqvRTCZWvvcHBA1Cwo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.17/css/metro-icons.min.css" integrity="sha256-31ggnBSz0XfJKzSYbD5BmC7X35DPWWrbKXkuI3LwGgw=" crossorigin="anonymous" />
+    <!-- font awesome -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <!-- core css stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
+  </head>
+  <body>
+    <!-- search area -->
+    <div class="container v-align-middle">
+      <div class="login-form padding20 align-center">
+          <form id="search-form" action="/topic" method="post">
+              {% csrf_token %}
+              <h1 class="text-light align-center">國立清華大學研究領域探索系統</h1>
+              <ul class="steps">
+                <li><a class="step1 active" href="#">輸入欲探索主題關鍵字</a></li>
+                <li><a class="step2" href="#">選擇相近文字雲內之關鍵字</a></li>
+                <li><a class="step3" href="#">選擇興趣領域 / 教師</a></li>
+              </ul>
+              <div class="flex-grid">
+                <div class="row flex-just-center">
+                  <div class="input-control text margin20 cell size-p50" data-role="input">
+                    <input id="query-input" type="text" name="query" placeholder=" 請輸入想要搜尋的字詞">
+                    <button class="button search" type="submit"><span class="mif-search"></span></button>
+                  </div>
+                </div>
+              </div>
+          </form>
+      </div>
+    </div>
+
+    <!-- main content -->
+    <div id="cloud-gallery" class="container align-center"></div>
+
+    <!-- topic content -->
+    <div data-role="dialog" id="topic-dialog" class="padding20 dialog" style="top: 140px;" data-place="bottom-center" data-close-button="true" data-overlay="true" data-overlay-color="transparent" data-overlay-click-close="true" data-windows-style="true">
+      <div>
+        <h5 class="header"></h5>
+        <div class="flex-grid">
+          <div class="row flex-just-center">
+            <div class="cell colspan3"><h4 class="text-light">相關系所師資</h4></div>
+            <div class="cell colspan9"><h4 class="text-light">相關文獻</h4></div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-grid" style="position: absolute; top: 110px; bottom: 20px;">
+        <div class="row flex-just-center" style="height: 100%;">
+          <div class="cell colspan3" style="height: 100%; overflow:scroll;">
+            <div class="listview department-area" data-role="listview"></div>
+          </div>
+          <div class="cell colspan9" style="height: 100%; overflow:scroll;">
+            <div class="article-area padding20 no-padding-top no-padding-left"></div>
+          </div>
+        </div>
+      </div>
+      <!-- <span class="dialog-close-button"></span> -->
+    </div>
+
+    <!-- jquery & boostrap &  js lib -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metro/3.0.17/js/metro.min.js" integrity="sha256-KvQFvC4giV74SCam49ZgzovmzXRImbrNtGSz+IP6aP8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.0.6/wordcloud2.min.js" integrity="sha256-2fZb2cB1rJnkWBu2EhWPCUGm0dG3mO48zqvIHB9XZyE=" crossorigin="anonymous"></script>
+    <!-- ref: https://codepen.io/macsupport/pen/OPwvwx -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.2/velocity.min.js"></script> -->
+    <script type="text/javascript" src="{% static 'js/utility.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tagcloud.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/search.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

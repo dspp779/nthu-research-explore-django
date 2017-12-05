@@ -1,0 +1,111 @@
+body {
+  background-color: #fafafa;
+}
+
+.unscrollable {
+  overflow-y:hidden;
+}
+
+#query-input {
+  font-family:Arial, FontAwesome;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+#topic-dialog {
+  visibility: hidden;
+}
+
+.search.button {
+  background: transparent;
+  border: 0px;
+}
+
+.listview .list.professor {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-bottom-color: #eee;
+  position: relative;
+  height: auto;
+}
+
+.steps {
+  display: inline-block;
+  margin: .625rem 0;
+  padding: 0;
+  padding-right: 20px;
+  list-style: none;
+  overflow: hidden;
+}
+
+.steps li {
+  float: left;
+  margin: 0 .2em 0 1em;
+}
+
+.steps li a {
+  background: #d9d9d9;
+  float: left;
+  position: relative;
+  background: rgb(217, 217, 217);
+  padding: 0.6em 1em;
+  text-decoration: none;
+}
+
+.steps a.active {
+  background: #893180;
+  color: #fff;
+}
+
+.steps a.active:after {
+  border-left-color: #893180;
+}
+
+.steps a:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-top: 1.5em solid transparent;
+  border-bottom: 1.5em solid transparent;
+  border-left: 1em solid #d9d9d9;
+  right: -1em;
+  margin-right: 1px;
+}
+
+.steps li:not(:first-child) a:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  margin-top: -1.5em;
+  border-width: 1.5em 0 1.5em 1em;
+  border-style: solid;
+  border-color: #d9d9d9 #d9d9d9 #d9d9d9 transparent;
+  left: -1em;
+  margin-left: 1px;
+}
+
+.steps li:not(:first-child) a.active:before {
+  border-color: #893180 #893180 #893180 transparent;
+}
+
+.steps li a {
+  color: #fff;
+}
+
+#box {
+  pointer-events: none;
+  position: absolute;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+#box:hover {
+  border: 1px solid black;
+}
